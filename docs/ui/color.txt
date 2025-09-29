@@ -3,14 +3,12 @@ Pallet 1 (Abirtek)
 #9600fe, #b54cfe, #dfb2fe
 #0096fe
 
-
 Pallet 2 (BiomassX)
 --producers #c2fb34 
---exchange  #2563eb;
 --consumers #F59E0B
---Error     #EF4444
 --gray      #F9FAFB
-
+--Error     #EF4444
+--exchange  #2563eb
 Pallet 3 (Utopiaville)
 1. Hopeful & Human-Centered (Recommended)
 Primary: Soft teal or muted aqua (#4DB6AC or #5F9EA0)
