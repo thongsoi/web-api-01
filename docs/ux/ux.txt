@@ -1,0 +1,16 @@
+[Login / Sign Up]
+       |
+       v
+ [Landing Dashboard]
+       |
+ ┌────────────┬──────────────┬────────────┐
+ | Price & Volume Charts     | Alerts/Watchlist    | CO₂ Metrics  |
+ └────────────┴──────────────┴────────────┘
+       |
+ [Market Map] <—> [Recent Orders Table] <—> [Advanced Filters]
+       |
+ [Order Simulation / Cost Estimator]
+       |
+ [Create Order] or [Save Alert]
+       |
+ [Notification Center / Profile Settings / API Access]

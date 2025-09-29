@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BiomassX — Dashboard Mockup (Improved)</title>
+  <style>
+    :root{
+      /* COLOR REVISIONS */
+      --bg:#060f1b; /* Darker background */
+      --card:#0b1220; 
+      --muted:#9aa4b2; 
+      --glass: rgba(255,255,255,0.04); /* Slightly stronger glass effect */
+      --accent-green:#10b981; /* Buyer/Buy */
+      --accent-blue:#3b82f6; /* Seller/Sell */
+      --accent-orange:#f59e0b; /* Manager */
+      --accent-gray:#6b7280; /* Admin */
+      /* LAYOUT */
+      --radius:12px; --gap:16px; 
+      --shadow: 0 8px 20px rgba(0,0,0,0.5); /* Stronger shadow */
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:var(--bg);color:#e6eef6}
+    .app{display:flex;min-height:100vh}
+
+    /* Sidebar */
+    .sidebar{
+      width:280px; /* Slightly wider */
+      padding:20px;
+      background:var(--card);
+      border-right:1px solid rgba(255,255,255,0.03);
+      position: sticky; top: 0; height: 100vh; /* Fixed sidebar */
+      flex-shrink: 0;
+      transition: transform 0.3s ease-in-out;
+    }
+    .brand{display:flex;align-items:center;gap:10px;margin-bottom:24px}
+    .logo{width:48px;height:48px;border-radius:12px;background:var(--glass);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px}
+    .brand h1{font-size:18px;margin:0}
+    .role-switch{display:flex;gap:8px;margin:12px 0;flex-wrap: wrap;}
+    .role-btn{
+      padding:8px 10px;border-radius:10px;background:transparent;
+      border:1px solid rgba(255,255,255,0.06);cursor:pointer;
+      color:var(--muted);font-size:13px;
+      transition: all 0.2s;
+    }
+    .role-btn.active{
+      border-color:var(--accent); /* Accent border on active */
+      background: rgba(255,255,255,0.08); /* Darker active background */
+      color:#fff;
+    }
+    .nav{margin-top:24px}
+    .nav a{
+      display:block;padding:12px 10px; /* Larger hit area */
+      border-radius:10px;
+      color:var(--muted);text-decoration:none;margin-bottom:4px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav a:hover{background:rgba(255,255,255,0.03); color:#fff}
+    .nav a.active{background:var(--glass);color:var(--accent);font-weight:600} /* Accent color for active link */
+
+    /* Main */
+    .main{flex:1;padding:var(--gap);display:flex;flex-direction:column}
+    .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--gap);flex-wrap: wrap; gap: var(--gap);}
+    .search{display:flex;gap:10px;align-items:center}
+    .search input{
+      padding:10px 14px;border-radius:10px;border:0;
+      background:rgba(255,255,255,0.04); /* Stronger input background */
+      color:#e6eef6;width:360px;
+      transition: background 0.2s;
+    }
+    .search input:focus{background:rgba(255,255,255,0.06); outline: none;}
+    .actions{display:flex;gap:10px;align-items:center}
+    .pill{padding:8px 12px;border-radius:999px;background:var(--glass);font-size:13px;border:1px solid rgba(255,255,255,0.02);}
+
+    /* Grid */
+    .grid{
+      display:grid;
+      grid-template-columns:300px 1fr 340px; /* Adjusted columns */
+      gap:var(--gap);
+      align-items:start
+    }
+    .card{
+      background:var(--card);
+      padding:20px; /* Slightly more padding */
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,0.05); /* Stronger border */
+    }
+    .card h3{margin:0 0 14px 0;font-size:16px;border-bottom:1px solid rgba(255,255,255,0.03);padding-bottom:10px}
+    .stats{display:flex;flex-direction:column;gap:12px}
+    .stat{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.02);padding:10px;border-radius:8px}
+    .stat .label{color:var(--muted);font-size:13px}
+    .stat .value{font-weight:700;color:#fff}
+
+    /* Chart (simple spark) */
+    .chart{height:180px;padding:10px;display:flex;align-items:center} /* Taller chart */
+    .spark{width:100%;height:100%}
+
+    /* Table */
+    .table-wrapper{overflow-x: auto;} /* Allow horizontal scroll for table on small screens */
+    table{width:100%;min-width: 500px;border-collapse:collapse;font-size:14px}
+    th,td{padding:12px 8px;text-align:left;color:var(--muted);border-bottom:1px solid rgba(255,255,255,0.02);}
+    th{color:#fff;font-size:13px;text-transform: uppercase;}
+    tr:last-child td{border-bottom:none;}
+    .tag{display:inline-block;padding:4px 8px;border-radius:999px;font-size:12px;background:rgba(255,255,255,0.05);color:var(--muted)}
+
+    /* Forms & Buttons */
+    .form-row{display:flex;gap:8px}
+    .input,select{
+      flex:1;padding:10px;border-radius:8px;border:0;
+      background:rgba(255,255,255,0.04);
+      color:#e6eef6;
+    }
+    .input:focus, select:focus { outline: 1px solid var(--accent); }
+    .btn{
+      padding:10px 12px;border-radius:10px;border:0;
+      background:var(--accent); /* Use dynamic accent color */
+      color:var(--bg);font-weight:600;
+      cursor:pointer;transition: background 0.2s;
+    }
+    .btn:hover{filter: brightness(1.1);}
+
+    /* Role themes */
+    .theme-buyer{--accent:var(--accent-green)}
+    .theme-seller{--accent:var(--accent-blue)}
+    .theme-manager{--accent:var(--accent-orange)}
+    .theme-admin{--accent:var(--accent-gray)}
+    .accent-pill{
+      background:rgba(255,255,255,0.02);
+      padding:6px 12px;border-radius:999px;
+      border:1px solid rgba(255,255,255,0.06);
+      color:var(--muted);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .accent-pill:hover{background:rgba(255,255,255,0.04); color:#fff;}
+    .accent-pill.active{border-color:var(--accent); color:var(--accent); background:rgba(255,255,255,0.04);}
+
+    /* MOBILE MENU BUTTON */
+    .mobile-menu-btn {
+      display: none; /* Hidden by default */
+      background: var(--glass);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    /* --- RESPONSIVENESS --- */
+    @media (max-width: 1200px) {
+      .grid {
+        grid-template-columns: 1fr 340px; /* Two columns for smaller desktops/tablets */
+        grid-template-areas: "main right" "left left";
+      }
+      #leftCol { grid-area: left; }
+      .main > div:nth-child(2) { grid-area: main; }
+      .main > div:nth-child(3) { grid-area: right; }
+      .sidebar { width: 240px; }
+    }
+
+    @media (max-width: 900px){
+      /* Tablet/Mobile Landscape */
+      .app { flex-direction: column; }
+      .grid {
+        grid-template-columns: 1fr; /* Single column */
+        grid-template-areas: "main" "left" "right";
+      }
+      .sidebar { 
+        position: fixed; 
+        z-index: 10;
+        height: 100vh;
+        transform: translateX(-100%); /* Hide sidebar off-screen */
+        box-shadow: var(--shadow);
+      }
+      .sidebar.open { transform: translateX(0); }
+      .mobile-menu-btn { display: block; }
+      .search input { width: 100%; max-width: 300px; }
+      .topbar { flex-direction: column; align-items: flex-start; }
+      .actions { margin-top: 10px; }
+      .pill:nth-child(2) { display: none; } /* Hide CO2 pill on small screen */
+      .pill:nth-child(3) { display: none; } /* Hide Notifications pill on small screen */
+    }
+    
+    @media (max-width: 550px) {
+      /* Mobile Portrait */
+      .topbar, .search, .actions { width: 100%; }
+      .search input { max-width: none; }
+      .role-switch { justify-content: space-around; }
+      .form-row { flex-direction: column; }
+      .card { padding: 16px; }
+    }
+
+    footer{margin-top:24px;color:var(--muted);font-size:13px; text-align: center;}
+  </style>
+</head>
+<body>
+  <div class="app theme-buyer" id="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="logo">BX</div>
+        <div><h1>BiomassX</h1><div style="font-size:12px;color:var(--muted)">Market Dashboard Mockup</div></div>
+      </div>
+      <div class="role-switch">
+        <button class="role-btn active" data-role="buyer">Buyer</button>
+        <button class="role-btn" data-role="seller">Seller</button>
+        <button class="role-btn" data-role="manager">Manager</button>
+        <button class="role-btn" data-role="admin">Admin</button>
+      </div>
+      <nav class="nav">
+        <a href="#" class="active">Dashboard</a>
+        <a href="#">Orders</a>
+        <a href="#">Market Map</a>
+        <a href="#">Insights</a>
+        <a href="#">Sustainability</a>
+        <a href="#">Settings</a>
+      </nav>
+      <div style="margin-top:30px">
+        <div style="font-size:13px;color:var(--muted)">Signed in as</div>
+        <div style="margin-top:8px;font-weight:700;color: #fff;">Acme Biomass Co.</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">☰ Menu</button> <div class="search">
+          <input placeholder="Search products, regions, orders..." id="globalSearch">
+          <div class="pill">Live PKS: <strong id="livePrice">$120.50</strong></div>
+        </div>
+        <div class="actions">
+          <div class="pill">CO₂ saved: <strong id="co2">12,345 t</strong></div>
+          <div class="pill">Notifications <span class="tag" id="notifCount">3</span></div>
+          <div class="pill">Profile</div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card" id="leftCol">
+          <h3>Quick Stats</h3>
+          <div class="stats" id="quickStats">
+            <div class="stat"><div class="label">Active Orders</div><div class="value">24</div></div>
+            <div class="stat"><div class="label">Favorites</div><div class="value">6</div></div>
+            <div class="stat"><div class="label">Avg Price (30d)</div><div class="value">$118.30</div></div>
+          </div>
+          <hr style="margin:20px 0;border-color:rgba(255,255,255,0.03)">
+          <h3>Filters</h3>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <select id="fProduct" class="input"><option>All products</option><option>PKS</option><option>Wood Pellets</option><option>Sawdust</option></select>
+            <select id="fRegion" class="input"><option>All regions</option><option>Asia</option><option>Europe</option><option>North America</option></select>
+            <button class="btn" id="applyFilter">Apply Filters</button>
+          </div>
+        </div>
+
+        <div>
+          <div class="card">
+            <h3 id="mainTitle">Live Prices & Market Trends — Buyer View</h3>
+            <div class="chart">
+              <svg class="spark" viewBox="0 0 600 180" preserveAspectRatio="none" id="priceSpark"></svg>
+            </div>
+            <div style="display:flex;gap:10px;margin-top:12px">
+              <div class="accent-pill active">All Time</div>
+              <div class="accent-pill">1M</div>
+              <div class="accent-pill">3M</div>
+              <div class="accent-pill">1Y</div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:var(--gap)">
+            <h3>Order Book</h3>
+            <div class="table-wrapper"> <table id="ordersTable">
+                <thead><tr><th>Type</th><th>Product</th><th>Qty</th><th>Region</th><th>Delivery</th><th>Price</th></tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        <div>
+          <div class="card" id="quickOrderCard">
+            <h3 id="orderCardTitle">Quick Order (Buy)</h3>
+            <div style="font-size:13px;color:var(--muted);margin-bottom:12px">Create a fast buy/sell request</div>
+            <div class="form-row">
+              <select id="oType" class="input"><option>Buy</option><option>Sell</option></select>
+              <select id="oProduct" class="input"><option>PKS</option><option>Wood Pellets</option><option>Sawdust</option></select>
+            </div>
+            <div style="height:12px"></div>
+            <div class="form-row">
+              <input id="oQty" class="input" placeholder="Quantity (MT)">
+              <select id="oDelivery" class="input"><option>FOB</option><option>EXW</option><option>DAP</option></select>
+            </div>
+            <div style="height:12px"></div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <input id="oPrice" class="input" placeholder="Price (USD/MT)">
+              <button class="btn" id="postOrder">Post</button>
+            </div>
+            <div style="margin-top:16px;color:var(--muted);font-size:13px">Templates: <span class="tag">Repeat</span> <span class="tag">FOB-Asia</span></div>
+          </div>
+
+          <div class="card" style="margin-top:var(--gap)">
+            <h3>Market Map</h3>
+            <div style="height:180px;display:flex;align-items:center;justify-content:center;color:var(--muted)">Map placeholder (interactive SVG possible)</div>
+          </div>
+
+        </div>
+      </div>
+
+      <footer>Prototype — HTML/CSS/JS mockup. Switch roles to see tailored panels.</footer>
+    </main>
+  </div>
+
+  <script>
+    // Sample data
+    const samplePrices = [120.5,121,119.2,118.8,121.7,122.9,121.3,120.1,119.9,118.7,117.5,119.8,120.6,121.9,122.2];
+    const sampleOrders = [
+      {type:'Sell',product:'PKS',qty:1200,region:'Indonesia',delivery:'FOB',price:119.5},
+      {type:'Buy',product:'Wood Pellets',qty:500,region:'Vietnam',delivery:'EXW',price:140.0},
+      {type:'Sell',product:'Sawdust',qty:2000,region:'Thailand',delivery:'DAP',price:85.0},
+      {type:'Buy',product:'PKS',qty:800,region:'Malaysia',delivery:'FOB',price:121.0},
+    ];
+
+    // Render orders table
+    function renderOrders(){
+      const tbody = document.querySelector('#ordersTable tbody'); tbody.innerHTML='';
+      // Get current accent colors for buy/sell consistency
+      const accentGreen = getComputedStyle(document.documentElement).getPropertyValue('--accent-green').trim();
+      const accentBlue = getComputedStyle(document.documentElement).getPropertyValue('--accent-blue').trim();
+
+      for(const o of sampleOrders){
+        const tr=document.createElement('tr');
+        // Swapped colors for consistency: Buy=Green, Sell=Blue
+        const color = o.type === 'Buy' ? accentGreen : accentBlue;
+        tr.innerHTML=`<td style="color:${color}">${o.type}</td><td>${o.product}</td><td>${o.qty}</td><td>${o.region}</td><td>${o.delivery}</td><td>$${o.price.toFixed(2)}</td>`;
+        tbody.appendChild(tr);
+      }
+    }
+
+    // Draw a simple sparkline as polyline in SVG
+    function drawSpark(data){
+      const svg = document.getElementById('priceSpark');
+      // Ensure SVG is rendered before getting dimensions (especially on mobile)
+      const w = svg.clientWidth || 600; const h = svg.clientHeight || 180; 
+      svg.setAttribute('viewBox', `0 0 ${w} ${h}`); // Update viewBox for proper scaling
+      
+      const max = Math.max(...data); const min = Math.min(...data);
+      const range = max - min || 1;
+      const points = data.map((v,i)=>{
+        const x = (i/(data.length-1))*w;
+        const y = h - ((v-min)/range)*h;
+        return `${x},${y}`;
+      }).join(' ');
+
+      // Use the dynamic --accent variable for the line/fill
+      svg.innerHTML = `
+        <defs>
+          <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.5" />
+            <stop offset="100%" stop-color="var(--accent)" stop-opacity="0.01" />
+          </linearGradient>
+        </defs>
+        <polyline points="${points}" fill="url(#g1)" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+        <polyline points="${points}" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+        `;
+    }
+
+    // Role switching
+    const app = document.getElementById('app');
+    const roleButtons = document.querySelectorAll('.role-btn');
+    const root = document.documentElement;
+
+    roleButtons.forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        roleButtons.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const role = btn.dataset.role;
+        app.classList.remove('theme-buyer','theme-seller','theme-manager','theme-admin');
+        app.classList.add('theme-'+role);
+        
+        // Update the custom CSS property for dynamic use
+        let accentVarName;
+        if(role==='buyer') accentVarName='--accent-green';
+        else if(role==='seller') accentVarName='--accent-blue';
+        else if(role==='manager') accentVarName='--accent-orange';
+        else accentVarName='--accent-gray';
+
+        // Apply the base role accent to the custom --accent property
+        const accentValue = getComputedStyle(root).getPropertyValue(accentVarName).trim();
+        app.style.setProperty('--accent', accentValue);
+
+        applyRole(role);
+        
+        // Close sidebar on role switch on mobile
+        if (window.innerWidth <= 900) {
+          document.getElementById('sidebar').classList.remove('open');
+        }
+      });
+    });
+
+    function applyRole(role){
+      // Role specific text
+      const mainTitle = document.getElementById('mainTitle');
+      const orderCardTitle = document.getElementById('orderCardTitle');
+      
+      const oType = document.getElementById('oType');
+      const quickOrderBtn = document.getElementById('postOrder');
+
+      if(role==='buyer'){
+        mainTitle.textContent='Live Prices & Market Trends — Buyer View';
+        orderCardTitle.textContent='Quick Order (Buy)';
+        oType.value='Buy';
+        quickOrderBtn.textContent='Post';
+        quickOrderBtn.style.background='var(--accent-green)';
+      } else if(role==='seller'){
+        mainTitle.textContent='Buyer Demand & Price Trends — Seller View';
+        orderCardTitle.textContent='Post Offer (Sell)';
+        oType.value='Sell';
+        quickOrderBtn.textContent='Post Offer';
+        quickOrderBtn.style.background='var(--accent-blue)';
+      } else if(role==='manager'){
+        mainTitle.textContent='Analytics & Sustainability — Manager View';
+        orderCardTitle.textContent='Create Report / Export';
+        oType.value='Buy'; // doesn't matter, just a placeholder
+        quickOrderBtn.textContent='Export Data';
+        quickOrderBtn.style.background='var(--accent-orange)';
+      } else {
+        mainTitle.textContent='Platform Overview — Admin View';
+        orderCardTitle.textContent='Admin Tools';
+        oType.value='Buy'; // doesn't matter, just a placeholder
+        quickOrderBtn.textContent='Open Admin';
+        quickOrderBtn.style.background='var(--accent-gray)';
+      }
+
+      // Role specific quick stats
+      const stats = document.getElementById('quickStats');
+      if(role==='buyer') stats.innerHTML=`<div class="stat"><div class="label">Active Orders</div><div class="value">24</div></div>
+        <div class="stat"><div class="label">Favorites</div><div class="value">6</div></div>
+        <div class="stat"><div class="label">Avg Price (30d)</div><div class="value">$118.30</div></div>`;
+      if(role==='seller') stats.innerHTML=`<div class="stat"><div class="label">Posted Offers</div><div class="value">12</div></div>
+        <div class="stat"><div class="label">Responses</div><div class="value">9</div></div>
+        <div class="stat"><div class="label">Fill Rate</div><div class="value">78%</div></div>`;
+      if(role==='manager') stats.innerHTML=`<div class="stat"><div class="label">Total Orders</div><div class="value">1,240</div></div>
+        <div class="stat"><div class="label">CO₂ Saved</div><div class="value">12,345 t</div></div>
+        <div class="stat"><div class="label">Top Market</div><div class="value">Asia</div></div>`;
+      if(role==='admin') stats.innerHTML=`<div class="stat"><div class="label">Active Users</div><div class="value">3,208</div></div>
+        <div class="stat"><div class="label">Trades Today</div><div class="value">42</div></div>
+        <div class="stat"><div class="label">Data Issues</div><div class="value">2</div></div>`;
+
+
+      drawSpark(samplePrices);
+      renderOrders();
+    }
+    
+    // --- MOBILE MENU TOGGLE ---
+    document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+      document.getElementById('sidebar').classList.toggle('open');
+    });
+
+    // Initial render and setup
+    applyRole('buyer'); // Initial call to set everything up correctly
+    window.addEventListener('resize',()=>drawSpark(samplePrices)); // Simple responsiveness for svg
+    
+    // Post order / actions (Kept for functionality, only style updated)
+    document.getElementById('postOrder').addEventListener('click',()=>{
+      const type = document.getElementById('oType').value;
+      const product = document.getElementById('oProduct').value;
+      const qty = document.getElementById('oQty').value || 0;
+      const delivery = document.getElementById('oDelivery').value;
+      const price = parseFloat(document.getElementById('oPrice').value) || 0;
+      if(!qty || !price){
+        alert('Please enter quantity and price.'); return;
+      }
+      sampleOrders.unshift({type,product,qty:parseInt(qty),region:'(your region)',delivery,price});
+      renderOrders();
+      alert('Order posted (mock). Check Order Book.');
+    });
+
+    // Filter (mock)
+    document.getElementById('applyFilter').addEventListener('click',()=>{
+      const p=document.getElementById('fProduct').value; const r=document.getElementById('fRegion').value;
+      alert('Filters applied (mock): '+p+' / '+r);
+    });
+
+  </script>
+</body>
+</html>

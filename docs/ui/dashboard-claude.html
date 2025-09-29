@@ -1,0 +1,1018 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BiomassX — Dashboard Mockup (Enhanced)</title>
+  <style>
+    :root{
+      /* Enhanced color palette with better contrast */
+      --bg: #0a0f1c;
+      --bg-secondary: #0f1423;
+      --card: #161b2a;
+      --card-hover: #1d2332;
+      --surface: #242938;
+      --border: rgba(255,255,255,0.08);
+      --border-light: rgba(255,255,255,0.04);
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --text-disabled: #64748b;
+      
+      /* Enhanced accent colors with better accessibility */
+      --accent-green: #22c55e;
+      --accent-green-light: rgba(34, 197, 94, 0.1);
+      --accent-blue: #3b82f6;
+      --accent-blue-light: rgba(59, 130, 246, 0.1);
+      --accent-orange: #f97316;
+      --accent-orange-light: rgba(249, 115, 22, 0.1);
+      --accent-purple: #8b5cf6;
+      --accent-purple-light: rgba(139, 92, 246, 0.1);
+      
+      /* Enhanced gradients */
+      --gradient-bg: linear-gradient(135deg, #0a0f1c 0%, #0f1423 50%, #161b2a 100%);
+      --gradient-card: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+      --gradient-accent: linear-gradient(135deg, var(--accent) 0%, rgba(var(--accent-rgb), 0.8) 100%);
+      
+      --radius: 16px;
+      --radius-sm: 8px;
+      --gap: 20px;
+      --shadow: 0 8px 32px rgba(0,0,0,0.4);
+      --shadow-hover: 0 12px 40px rgba(0,0,0,0.5);
+      
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+      font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: var(--gradient-bg);
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    .app {
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    /* Enhanced Sidebar */
+    .sidebar {
+      width: 280px;
+      padding: 24px;
+      background: var(--card);
+      border-right: 1px solid var(--border);
+      position: relative;
+      overflow-y: auto;
+      transition: transform 0.3s ease;
+    }
+    
+    .sidebar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--gradient-card);
+      z-index: -1;
+    }
+    
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    
+    .logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--gradient-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      color: white;
+      box-shadow: var(--shadow);
+    }
+    
+    .brand h1 {
+      font-size: 18px;
+      margin: 0;
+      font-weight: 600;
+    }
+    
+    .brand .subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    
+    .role-switch {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 20px 0;
+    }
+    
+    .role-btn {
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      border: 1px solid var(--border-light);
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    
+    .role-btn:hover {
+      border-color: var(--border);
+      background: var(--surface);
+    }
+    
+    .role-btn.active {
+      border-color: var(--accent);
+      background: rgba(var(--accent-rgb), 0.1);
+      color: var(--accent);
+    }
+    
+    .nav {
+      margin-top: 24px;
+    }
+    
+    .nav a {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-bottom: 4px;
+      transition: all 0.2s ease;
+      font-weight: 500;
+    }
+    
+    .nav a:hover {
+      background: var(--surface);
+      color: var(--text-secondary);
+    }
+    
+    .nav a.active {
+      background: rgba(var(--accent-rgb), 0.1);
+      color: var(--accent);
+    }
+    
+    .user-info {
+      margin-top: 32px;
+      padding: 16px;
+      background: var(--surface);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-light);
+    }
+    
+    .user-info .label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    
+    .user-info .name {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    
+    /* Mobile sidebar toggle */
+    .sidebar-toggle {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 8px;
+      cursor: pointer;
+      color: var(--text-primary);
+    }
+    
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+    }
+    
+    /* Enhanced Main Content */
+    .main {
+      flex: 1;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+    
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    
+    .search {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    
+    .search input {
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-light);
+      background: var(--surface);
+      color: var(--text-primary);
+      width: 320px;
+      max-width: 100%;
+      transition: all 0.2s ease;
+    }
+    
+    .search input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.1);
+    }
+    
+    .actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    
+    .pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      font-size: 13px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    
+    /* Enhanced Grid Layout */
+    .grid {
+      display: grid;
+      grid-template-columns: 340px 1fr 380px;
+      gap: var(--gap);
+      align-items: start;
+    }
+    
+    .card {
+      background: var(--card);
+      padding: 20px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--gradient-card);
+      border-radius: var(--radius);
+      z-index: -1;
+    }
+    
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .card h3 {
+      margin: 0 0 16px 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    
+    .stats {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .stat {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--surface);
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-light);
+      transition: all 0.2s ease;
+    }
+    
+    .stat:hover {
+      background: var(--card-hover);
+    }
+    
+    .stat .label {
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 500;
+    }
+    
+    .stat .value {
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    
+    /* Enhanced Chart */
+    .chart {
+      height: 160px;
+      background: var(--surface);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--border-light);
+    }
+    
+    .spark {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .chart-controls {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+    
+    .chart-btn {
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .chart-btn:hover,
+    .chart-btn.active {
+      background: rgba(var(--accent-rgb), 0.1);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    
+    /* Enhanced Table */
+    .table-container {
+      overflow-x: auto;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    
+    th, td {
+      padding: 12px 8px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-light);
+    }
+    
+    th {
+      color: var(--text-muted);
+      font-weight: 600;
+      background: var(--surface);
+    }
+    
+    td {
+      color: var(--text-secondary);
+    }
+    
+    tr:hover td {
+      background: var(--surface);
+    }
+    
+    .tag {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      background: var(--surface);
+      color: var(--text-muted);
+      border: 1px solid var(--border-light);
+    }
+    
+    /* Enhanced Forms */
+    .form-row {
+      display: flex;
+      gap: 12px;
+    }
+    
+    .input, select {
+      flex: 1;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-light);
+      background: var(--surface);
+      color: var(--text-primary);
+      transition: all 0.2s ease;
+    }
+    
+    .input:focus, select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.1);
+    }
+    
+    .btn {
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      border: 0;
+      background: var(--accent);
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(var(--accent-rgb), 0.3);
+    }
+    
+    /* Role themes with CSS custom properties */
+    .theme-buyer {
+      --accent: var(--accent-green);
+      --accent-rgb: 34, 197, 94;
+    }
+    
+    .theme-seller {
+      --accent: var(--accent-blue);
+      --accent-rgb: 59, 130, 246;
+    }
+    
+    .theme-manager {
+      --accent: var(--accent-orange);
+      --accent-rgb: 249, 115, 22;
+    }
+    
+    .theme-admin {
+      --accent: var(--accent-purple);
+      --accent-rgb: 139, 92, 246;
+    }
+    
+    .accent-pill {
+      background: rgba(var(--accent-rgb), 0.1);
+      border: 1px solid rgba(var(--accent-rgb), 0.2);
+      color: var(--accent);
+    }
+    
+    /* Enhanced Mobile Responsiveness */
+    @media (max-width: 1200px) {
+      .grid {
+        grid-template-columns: 300px 1fr;
+      }
+      
+      .grid > div:last-child {
+        grid-column: 1 / -1;
+        margin-top: var(--gap);
+      }
+    }
+    
+    @media (max-width: 980px) {
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        transform: translateX(-100%);
+        z-index: 1000;
+      }
+      
+      .sidebar.open {
+        transform: translateX(0);
+      }
+      
+      .sidebar-toggle {
+        display: block;
+      }
+      
+      .sidebar-overlay.open {
+        display: block;
+      }
+      
+      .main {
+        padding: 80px 16px 16px;
+      }
+      
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .search input {
+        width: 100%;
+        min-width: 200px;
+      }
+      
+      .topbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .actions {
+        justify-content: center;
+      }
+    }
+    
+    @media (max-width: 640px) {
+      .main {
+        padding: 80px 12px 12px;
+      }
+      
+      .card {
+        padding: 16px;
+      }
+      
+      .form-row {
+        flex-direction: column;
+      }
+      
+      .role-switch {
+        grid-template-columns: 1fr;
+      }
+      
+      .chart-controls {
+        justify-content: center;
+      }
+      
+      .actions {
+        flex-direction: column;
+        width: 100%;
+      }
+      
+      .pill {
+        text-align: center;
+      }
+    }
+    
+    /* Enhanced animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .card {
+      animation: fadeIn 0.3s ease;
+    }
+    
+    footer {
+      margin-top: 32px;
+      padding: 20px 0;
+      color: var(--text-muted);
+      font-size: 13px;
+      text-align: center;
+      border-top: 1px solid var(--border-light);
+    }
+  </style>
+</head>
+<body>
+  <div class="app theme-buyer" id="app">
+    <button class="sidebar-toggle" id="sidebarToggle">
+      ☰
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="logo">BX</div>
+        <div>
+          <h1>BiomassX</h1>
+          <div class="subtitle">Market Dashboard</div>
+        </div>
+      </div>
+      
+      <div class="role-switch">
+        <button class="role-btn active" data-role="buyer">Buyer</button>
+        <button class="role-btn" data-role="seller">Seller</button>
+        <button class="role-btn" data-role="manager">Manager</button>
+        <button class="role-btn" data-role="admin">Admin</button>
+      </div>
+      
+      <nav class="nav">
+        <a href="#" class="active">📊 Dashboard</a>
+        <a href="#">📋 Orders</a>
+        <a href="#">🗺️ Market Map</a>
+        <a href="#">📈 Insights</a>
+        <a href="#">🌱 Sustainability</a>
+        <a href="#">⚙️ Settings</a>
+      </nav>
+      
+      <div class="user-info">
+        <div class="label">Signed in as</div>
+        <div class="name">Acme Biomass Co.</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div class="search">
+          <input placeholder="Search products, regions, orders..." id="globalSearch">
+          <div class="pill">Live PKS: <strong id="livePrice">$120.50</strong></div>
+        </div>
+        <div class="actions">
+          <div class="pill">🌿 CO₂ saved: <strong id="co2">12,345 t</strong></div>
+          <div class="pill">🔔 Notifications <span class="tag" id="notifCount">3</span></div>
+          <div class="pill">👤 Profile</div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <!-- Left column: stats -->
+        <div class="card" id="leftCol">
+          <h3>📊 Quick Stats</h3>
+          <div class="stats" id="quickStats">
+            <div class="stat"><div class="label">Active Orders</div><div class="value">24</div></div>
+            <div class="stat"><div class="label">Favorites</div><div class="value">6</div></div>
+            <div class="stat"><div class="label">Avg Price (30d)</div><div class="value">$118.30</div></div>
+          </div>
+          <hr style="margin:20px 0;border:0;height:1px;background:var(--border-light)">
+          <h3>🔍 Filters</h3>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <select id="fProduct" class="input">
+              <option>All products</option>
+              <option>PKS</option>
+              <option>Wood Pellets</option>
+              <option>Sawdust</option>
+            </select>
+            <select id="fRegion" class="input">
+              <option>All regions</option>
+              <option>Asia</option>
+              <option>Europe</option>
+              <option>North America</option>
+            </select>
+            <button class="btn" id="applyFilter">Apply Filters</button>
+          </div>
+        </div>
+
+        <!-- Middle column: main content -->
+        <div>
+          <div class="card">
+            <h3 id="mainTitle">📈 Live Prices & Market Trends</h3>
+            <div class="chart">
+              <svg class="spark" viewBox="0 0 600 140" preserveAspectRatio="none" id="priceSpark"></svg>
+            </div>
+            <div class="chart-controls">
+              <div class="chart-btn">Compare</div>
+              <div class="chart-btn active">1M</div>
+              <div class="chart-btn">3M</div>
+              <div class="chart-btn">1Y</div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:20px">
+            <h3>📋 Order Book</h3>
+            <div class="table-container">
+              <table id="ordersTable">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Product</th>
+                    <th>Qty</th>
+                    <th>Region</th>
+                    <th>Delivery</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right column: quick order / insights -->
+        <div>
+          <div class="card" id="quickOrderCard">
+            <h3 id="orderCardTitle">⚡ Quick Order</h3>
+            <div style="font-size:13px;color:var(--text-muted);margin-bottom:12px">Create a fast buy/sell request</div>
+            <div class="form-row">
+              <select id="oType" class="input">
+                <option>Buy</option>
+                <option>Sell</option>
+              </select>
+              <select id="oProduct" class="input">
+                <option>PKS</option>
+                <option>Wood Pellets</option>
+                <option>Sawdust</option>
+              </select>
+            </div>
+            <div style="height:12px"></div>
+            <div class="form-row">
+              <input id="oQty" class="input" placeholder="Quantity (MT)">
+              <select id="oDelivery" class="input">
+                <option>FOB</option>
+                <option>EXW</option>
+                <option>DAP</option>
+              </select>
+            </div>
+            <div style="height:12px"></div>
+            <div style="display:flex;gap:12px;align-items:center">
+              <input id="oPrice" class="input" placeholder="Price (USD/MT)">
+              <button class="btn" id="postOrder">Post</button>
+            </div>
+            <div style="margin-top:16px;color:var(--text-muted);font-size:13px">
+              Templates: 
+              <span class="tag">Repeat</span> 
+              <span class="tag">FOB-Asia</span>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:20px">
+            <h3>🗺️ Market Map</h3>
+            <div style="height:160px;display:flex;align-items:center;justify-content:center;color:var(--text-muted);background:var(--surface);border-radius:var(--radius-sm);border:1px solid var(--border-light)">
+              Interactive map visualization
+              <br><small>Regional price heatmap</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        Enhanced BiomassX Dashboard — Improved colors, mobile responsive design, and modern UI patterns.
+        <br>Switch roles to see customized themes and data views.
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // Sample data
+    const samplePrices = [120.5,121,119.2,118.8,121.7,122.9,121.3,120.1,119.9,118.7,117.5,119.8,120.6,121.9,122.2];
+    const sampleOrders = [
+      {type:'Sell',product:'PKS',qty:1200,region:'Indonesia',delivery:'FOB',price:119.5},
+      {type:'Buy',product:'Wood Pellets',qty:500,region:'Vietnam',delivery:'EXW',price:140.0},
+      {type:'Sell',product:'Sawdust',qty:2000,region:'Thailand',delivery:'DAP',price:85.0},
+      {type:'Buy',product:'PKS',qty:800,region:'Malaysia',delivery:'FOB',price:121.0},
+    ];
+
+    // Mobile sidebar toggle
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    sidebarToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      sidebarOverlay.classList.toggle('open');
+    });
+
+    sidebarOverlay.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      sidebarOverlay.classList.remove('open');
+    });
+
+    // Render orders table with enhanced styling
+    function renderOrders(){
+      const tbody = document.querySelector('#ordersTable tbody'); 
+      tbody.innerHTML='';
+      for(const o of sampleOrders){
+        const tr = document.createElement('tr');
+        const typeColor = o.type === 'Buy' ? 'var(--accent-green)' : 'var(--accent-blue)';
+        tr.innerHTML = `
+          <td style="color:${typeColor};font-weight:600">${o.type}</td>
+          <td>${o.product}</td>
+          <td>${o.qty.toLocaleString()}</td>
+          <td>${o.region}</td>
+          <td><span class="tag">${o.delivery}</span></td>
+          <td style="font-weight:600">$${o.price.toFixed(2)}</td>
+        `;
+        tbody.appendChild(tr);
+      }
+    }
+
+    // Enhanced sparkline with gradient and better styling
+    function drawSpark(data){
+      const svg = document.getElementById('priceSpark');
+      const w = 600;
+      const h = 140;
+      const max = Math.max(...data);
+      const min = Math.min(...data);
+      const padding = 10;
+      
+      const points = data.map((v,i) => {
+        const x = padding + (i/(data.length-1)) * (w - 2*padding);
+        const y = padding + (1 - (v-min)/(max-min || 1)) * (h - 2*padding);
+        return `${x},${y}`;
+      }).join(' ');
+      
+      // Create gradient area
+      const areaPoints = `${padding},${h-padding} ` + points + ` ${w-padding},${h-padding}`;
+      
+      svg.innerHTML = `
+        <defs>
+          <linearGradient id="sparkGradient" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.3" />
+            <stop offset="100%" stop-color="var(--accent)" stop-opacity="0.05" />
+          </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+            <feMerge> 
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/> 
+            </feMerge>
+          </filter>
+        </defs>
+        <polygon points="${areaPoints}" fill="url(#sparkGradient)" />
+        <polyline points="${points}" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" filter="url(#glow)" />
+      `;
+    }
+
+    // Enhanced role switching with better animations
+    const app = document.getElementById('app');
+    document.querySelectorAll('.role-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const role = btn.dataset.role;
+        
+        // Update theme classes
+        app.classList.remove('theme-buyer','theme-seller','theme-manager','theme-admin');
+        app.classList.add(`theme-${role}`);
+        
+        applyRole(role);
+        
+        // Close mobile sidebar
+        sidebar.classList.remove('open');
+        sidebarOverlay.classList.remove('open');
+      });
+    });
+
+    function applyRole(role){
+      const mainTitle = document.getElementById('mainTitle');
+      const orderCardTitle = document.getElementById('orderCardTitle');
+      const stats = document.getElementById('quickStats');
+
+      // Role-specific content with emojis
+      const roleConfig = {
+        buyer: {
+          title: '📈 Live Prices & Market Trends — Buyer View',
+          orderTitle: '⚡ Quick Order (Buy)',
+          orderType: 'Buy',
+          stats: `
+            <div class="stat"><div class="label">Active Orders</div><div class="value">24</div></div>
+            <div class="stat"><div class="label">Favorites</div><div class="value">6</div></div>
+            <div class="stat"><div class="label">Avg Price (30d)</div><div class="value">$118.30</div></div>
+          `,
+          buttonText: 'Post Order'
+        },
+        seller: {
+          title: '📊 Buyer Demand & Price Trends — Seller View',
+          orderTitle: '💰 Post Offer (Sell)',
+          orderType: 'Sell',
+          stats: `
+            <div class="stat"><div class="label">Posted Offers</div><div class="value">12</div></div>
+            <div class="stat"><div class="label">Responses</div><div class="value">9</div></div>
+            <div class="stat"><div class="label">Fill Rate</div><div class="value">78%</div></div>
+          `,
+          buttonText: 'Post Offer'
+        },
+        manager: {
+          title: '📊 Analytics & Sustainability — Manager View',
+          orderTitle: '📋 Create Report / Export',
+          orderType: 'Buy',
+          stats: `
+            <div class="stat"><div class="label">Total Orders</div><div class="value">1,240</div></div>
+            <div class="stat"><div class="label">CO₂ Saved</div><div class="value">12,345 t</div></div>
+            <div class="stat"><div class="label">Top Market</div><div class="value">Asia</div></div>
+          `,
+          buttonText: 'Export Report'
+        },
+        admin: {
+          title: '⚙️ Platform Overview — Admin View',
+          orderTitle: '🔧 Admin Tools',
+          orderType: 'Buy',
+          stats: `
+            <div class="stat"><div class="label">Active Users</div><div class="value">3,208</div></div>
+            <div class="stat"><div class="label">Trades Today</div><div class="value">42</div></div>
+            <div class="stat"><div class="label">Data Issues</div><div class="value">2</div></div>
+          `,
+          buttonText: 'Open Admin'
+        }
+      };
+
+      const config = roleConfig[role];
+      if (config) {
+        mainTitle.textContent = config.title;
+        orderCardTitle.textContent = config.orderTitle;
+        document.getElementById('oType').value = config.orderType;
+        stats.innerHTML = config.stats;
+        document.getElementById('postOrder').textContent = config.buttonText;
+      }
+
+      drawSpark(samplePrices);
+      renderOrders();
+    }
+
+    // Initial render
+    drawSpark(samplePrices);
+    renderOrders();
+
+    // Enhanced order posting with validation
+    document.getElementById('postOrder').addEventListener('click', () => {
+      const type = document.getElementById('oType').value;
+      const product = document.getElementById('oProduct').value;
+      const qty = document.getElementById('oQty').value || 0;
+      const delivery = document.getElementById('oDelivery').value;
+      const price = parseFloat(document.getElementById('oPrice').value) || 0;
+      
+      if (!qty || !price) {
+        alert('⚠️ Please enter quantity and price.');
+        return;
+      }
+      
+      const newOrder = {
+        type,
+        product,
+        qty: parseInt(qty),
+        region: '(your region)',
+        delivery,
+        price
+      };
+      
+      sampleOrders.unshift(newOrder);
+      renderOrders();
+      
+      // Clear form
+      document.getElementById('oQty').value = '';
+      document.getElementById('oPrice').value = '';
+      
+      alert('✅ Order posted successfully! Check Order Book.');
+    });
+
+    // Enhanced filter functionality
+    document.getElementById('applyFilter').addEventListener('click', () => {
+      const product = document.getElementById('fProduct').value;
+      const region = document.getElementById('fRegion').value;
+      alert(`🔍 Filters applied:\nProduct: ${product}\nRegion: ${region}`);
+    });
+
+    // Chart control buttons
+    document.querySelectorAll('.chart-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.chart-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // Responsive chart redraw
+    window.addEventListener('resize', () => {
+      setTimeout(() => drawSpark(samplePrices), 100);
+    });
+
+    // Enhanced search functionality
+    document.getElementById('globalSearch').addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      if (query.length > 2) {
+        // Mock search highlighting
+        console.log('🔍 Searching for:', query);
+      }
+    });
+
+    // Live price updates (demo)
+    setInterval(() => {
+      const currentPrice = parseFloat(document.getElementById('livePrice').textContent.replace(', ''));
+      const change = (Math.random() - 0.5) * 2;
+      const newPrice = Math.max(100, currentPrice + change);
+      document.getElementById('livePrice').textContent = `${newPrice.toFixed(2)}`;
+    }, 5000);
+
+    // Initialize with buyer role
+    applyRole('buyer');

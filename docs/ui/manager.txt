@@ -1,0 +1,18 @@
++-----------------------------------------------------------+
+| BiomassX Logo        [Global Filters] [Download CSV/API]   |
++-----------------------------------------------------------+
+| Side Nav: Dashboard | Analytics | Sustainability | Team Mgmt|
+|           Alerts    | Market Map | Settings               |
++-----------------+-----------------------------------------+
+| KPIs Panel:      | Analytics Dashboard                    |
+| - Total Orders   | Trend Graphs (Price, Volume, CO₂ Saved) |
+| - CO₂ Saved      | Compare Products/Regions (dropdowns)    |
+| - Top Markets    |                                         |
++-----------------+-----------------------------------------+
+| Interactive Market Map (clickable pins)                   |
++-----------------------------------------------------------+
+| Data Export & API Access Panel                            |
+| (Set up feeds, download CSV/Excel)                        |
++-----------------------------------------------------------+
+| Team Collaboration Widget (roles/permissions)             |
++-----------------------------------------------------------+

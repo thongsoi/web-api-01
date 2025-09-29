@@ -1,0 +1,35 @@
+| Color Role                            | Hex / Example                                                    | Why it fits BiomassX                                                                                       |
+| -----------------------------------   | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| **Primary / Brand** (Green-Blue)      | `#1C7C54` (deep green) or `#16A34A` (emerald)                    | Green signals sustainability, biomass, and environmental benefits. A deeper tone conveys maturity & trust. |
+| (3) Secondary / Accent** (Clean Blue) | `#2563EB` (blue 600)                                             | Blue reinforces reliability, technology, and trade/market data. Works well for graphs, links, and CTAs.    |
+| (1) Highlight / Eco Accent.           | `#A3E635` (lime) or `#84CC16` (vivid green)                      | For positive indicators — CO₂ saved, upward trends, or active alerts.                                      |
+| **Neutral Background**                | `#0F172A` (dark navy) or `#F9FAFB` (light gray, for white-theme) | Dark UI emphasizes charts; light UI feels open. Offer a toggle.                                            |
+| **Text / Muted**                      | `#9CA3AF` (gray 400–500)                                         | Clean neutral for labels and data table text.                                                              |
+| (2) Alert / Warning**                 | `#F59E0B` (amber)                                                | Non-critical warnings or trending changes.                                                                 |
+| **Error / Negative**                  | `#EF4444` (red 500)                                              | Clear negative signals or failed transactions.                                                             |
+
+
+alternatives
+1. Dark Data Dashboard (default)
+
+Background: very dark navy (#0F172A)
+
+Cards: slightly lighter panels with glass effect (rgba(255,255,255,0.02))
+
+Text: off-white (#E5E7EB)
+
+Primary Buttons: emerald green, blue as secondary
+
+Charts: neon-like green/blue lines over dark background
+
+2. Clean Light Dashboard (alt theme)
+
+Background: light neutral gray (#F9FAFB)
+
+Cards: white with subtle shadows
+
+Text: dark gray for readability
+
+Primary Buttons: deep green
+
+Charts: green/blue lines on white background

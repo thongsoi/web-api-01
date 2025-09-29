@@ -1,0 +1,8 @@
++------------------------+
+| Notifications          |
++------------------------+
+| - New PKS Sell order in SEA < View >
+| - Price dropped below $120 < View >
+| - CO₂ milestone achieved this month!
++------------------------+
+[Settings] [Mark all as read]

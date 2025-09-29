@@ -1,0 +1,38 @@
+1. Buyers/Consumers
+Highest priority:
+- Real-time price & volume charts
+- Advanced order search & filters
+- Alerts & watchlists (price triggers, new product availability)
+- Quick order initiation
+- Order simulator/cost estimator
+- Multi-language support
+Secondary: 
+- Market map, sustainability scorecards (for ESG reporting)
+
+2. Sellers/Traders/Producers
+Highest priority:
+- Advanced order search to identify buyers & opportunities
+- Alerts for demand changes
+- Quick order posting & template reuse
+- Localization/multi-language support
+Secondary: 
+- Analytics of buyer trends, sustainability metrics for marketing
+
+3. Managers / Analysts (corporate users)
+Highest priority:
+- Market insights & analytics
+- Data export/API access for external reporting
+- Sustainability scorecards for ESG tracking
+- Team collaboration & permission management
+Secondary: 
+- Interactive map for geographic strategy, onboarding & glossary tools for staff
+
+4. Admin (Platform Operators)
+
+Highest priority:
+- Admin panel & user management
+- Data quality management (orders, prices, sustainability metrics)
+- Monitoring dashboard for KPIs (active users, CO₂ saved, trades executed)
+- Ability to feature/approve new market categories or standards
+Secondary: 
+- Supporting user education content

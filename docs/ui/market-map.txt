@@ -1,0 +1,12 @@
++-------------------------------------------------------------+
+|           Top Nav (same as dashboard)                       |
++-------------------------------------------------------------+
+| [Filters Above Map: Product | Region | Delivery Term]       |
+|                                                             |
+| +---------------------------------------------------------+ |
+| |   World/Regional Map with Trade Pins and Flows          | |
+| |   (hover to show order details)                         | |
+| +---------------------------------------------------------+ |
+|                                                             |
+| [Below Map: Table of Recent Orders matching filters]        |
++-------------------------------------------------------------+

@@ -1,0 +1,158 @@
+| Epic / Theme         | User Story (ID) | Priority | Notes                         |
+| -------------------- | --------------- | -------- | ----------------------------- |
+| Dashboard            | 1.1, 1.2, 1.3   | High-Med | Charts & KPIs                 |
+| Filters/Search       | 2.1, 2.2        | High     | Persistent global filters     |
+| Market Map           | 3.1, 3.2        | Med-Low  | Interactive visualization     |
+| Orders Table/Export  | 4.1, 4.2        | High-Med | Core trading data             |
+| Alerts/Notifications | 5.1, 5.2        | High-Med | Critical user engagement      |
+| Order Simulation     | 6.1             | Medium   | Cost transparency             |
+| User Accounts        | 7.1, 7.2        | Med-Low  | Basic profile + team features |
+| Knowledge Center     | 8.1, 8.2        | Low-Med  | Education & onboarding        |
+| API/Integrations     | 9.1, 9.2        | Low      | For advanced users            |
+
+
+
+1. Dashboard & Data Visualization
+
+User Story 1.1 – Price Trend Chart
+As a trader, I want to view an interactive price chart for each biomass product so I can monitor market fluctuations.
+Acceptance Criteria:
+Display buy/sell lines for selected product over time.
+Support time filters (1M, 3M, 6M, 1Y).
+Tooltip with exact price per date.
+Priority: High
+
+User Story 1.2 – Market Volume Chart
+As an analyst, I want to see the total traded volume over time so I can assess market activity.
+Acceptance Criteria:
+Bar chart showing total volume per month.
+Filter by product, region, and contract type.
+Priority: High
+
+User Story 1.3 – CO₂ Savings Metrics
+As an eco-conscious buyer, I want to see the CO₂ saved by trades so I can measure environmental impact.
+Acceptance Criteria:
+Show current month, YTD, and total CO₂ saved.
+Update in real time with each trade.
+Priority: Medium
+
+2. Filters & Search
+
+User Story 2.1 – Global Filters
+As a user, I want to filter dashboard data by product, region, contract type, delivery term, and quality standard so I can drill down into relevant data.
+Acceptance Criteria:
+Filters persist across dashboard pages.
+Multi-select allowed.
+Priority: High
+
+User Story 2.2 – Advanced Order Search
+As a trader, I want to search for recent orders by multiple attributes so I can find matching opportunities.
+Acceptance Criteria:
+Searchable fields: product, country, port, contract type, delivery term.
+Results displayed instantly in table format.
+Priority: High
+
+3. Market Map Visualization
+
+User Story 3.1 – Interactive Map
+As a user, I want to see recent orders plotted on a map so I can understand geographic trade flows.
+Acceptance Criteria:
+Map pins with hover details (product, quantity, price).
+Filters synchronized with global filters.
+Priority: Medium
+
+User Story 3.2 – Trade Flow Arrows
+As an analyst, I want to visualize the movement from origin to destination to understand regional patterns.
+Acceptance Criteria:
+Show directional arrows or heatmap overlay.
+Priority: Low (future iteration)
+
+4. Orders Table & Export
+
+User Story 4.1 – Recent Orders Table
+As a user, I want to view a table of recent orders so I can quickly see market activity.
+Acceptance Criteria:
+Columns: Product, Quantity, Quality, Contract, Delivery Term, Country, Port, Price, Payment Terms.
+Pagination & sorting.
+Priority: High
+
+User Story 4.2 – Export Orders Data
+As an analyst, I want to export order data as CSV so I can analyze offline.
+Acceptance Criteria:
+Export respects active filters.
+Priority: Medium
+
+5. Alerts & Notifications
+
+User Story 5.1 – Price Alerts
+As a trader, I want to set price alerts so I’m notified when a product crosses my threshold.
+Acceptance Criteria:
+Input threshold per product & region.
+Email & in-app notifications.
+Priority: High
+
+User Story 5.2 – Notification Center
+As a user, I want an in-app notification hub so I can view all alerts and updates in one place.
+Acceptance Criteria:
+Mark notifications as read.
+Group by type (Price Alert, New Order, System Updates).
+Priority: Medium
+
+6. Order Simulation / Cost Estimator
+
+User Story 6.1 – Cost Estimator
+As a buyer, I want to estimate the total cost of an order including delivery so I can plan my budget.
+Acceptance Criteria:
+Input fields for quantity, delivery terms, origin, and destination.
+Output total cost breakdown.
+Priority: Medium
+
+7. User Accounts & Profiles
+
+User Story 7.1 – Profile Management
+As a user, I want to manage my profile information so I can keep my account up to date.
+Acceptance Criteria:
+Update name, email, organization, password.
+Priority: Medium
+
+User Story 7.2 – Multi-User Team Accounts
+As a company admin, I want to add team members with roles so we can collaborate in one account.
+Acceptance Criteria:
+Roles: Admin, Analyst, Trader.
+Role-based permissions for creating orders and setting alerts.
+Priority: Low (future iteration)
+
+8. Knowledge Center
+
+User Story 8.1 – FAQs & Glossary
+As a new user, I want a knowledge base so I can understand trade terms and platform features.
+Acceptance Criteria:
+Searchable FAQs.
+Glossary of terms (SPOT, FOB, EN14961, etc.).
+Priority: Low
+
+User Story 8.2 – Onboarding Tour
+As a first-time user, I want an interactive walkthrough so I know how to use the dashboard.
+Acceptance Criteria:
+Highlight main dashboard components.
+Option to skip or replay tour.
+Priority: Medium
+
+9. API & Integrations
+
+User Story 9.1 – Public API Access
+As a partner developer, I want an API endpoint for prices and orders so I can integrate BiomassX data into my systems.
+Acceptance Criteria:
+REST endpoints with authentication.
+Rate limiting and API key management.
+Priority: Low
+
+User Story 9.2 – Data Export Automation
+As an analyst, I want scheduled data exports so I can automatically sync BiomassX data with my internal systems.
+Acceptance Criteria:
+Choose frequency & export format.
+Priority: Low
+
+
+
+

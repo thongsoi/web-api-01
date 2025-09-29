@@ -1,0 +1,17 @@
+Phase 1 – Core Trading Features (Buyers & Sellers)
+- Price charts
+- Advanced search
+- Quick order initiation
+- Alerts/watchlists
+- Localization
+
+Phase 2 – Analytics & Manager Tools
+- Interactive market map
+- Market insights & sustainability dashboards
+- Data export/API
+- Team collaboration
+
+Phase 3 – Admin & Platform Optimization
+- Full admin panel
+- Content/quality management
+- Enhanced onboarding

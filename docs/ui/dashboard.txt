@@ -1,0 +1,18 @@
++-------------------------------------------------------------+
+|  Top Nav: Logo | Dashboard | Market Map | Orders | Profile  |
++-------------------------------------------------------------+
+
+|  [Left Sidebar Filters]           |    [Main Dashboard Area] |
+|-----------------------------------|--------------------------|
+| - Product (PKS, pellets, etc.)    | +----------------------+ |
+| - Region (SEA, EU, etc.)          | | Price Trend Chart    | |
+| - Contract Type (SPOT/FORWARD)    | +----------------------+ |
+| - Delivery Term                   | +----------------------+ |
+| - Quality Standard                | | Market Volume Chart  | |
+|                                   | +----------------------+ |
+|                                   | +----------------------+ |
+|                                   | | CO₂ Saved Widget     | |
+|                                   | +----------------------+ |
++-------------------------------------------------------------+
+| [Quick Buttons: Create Order] [Set Price Alert] [Export CSV] |
++-------------------------------------------------------------+

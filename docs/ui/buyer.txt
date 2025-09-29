@@ -1,0 +1,18 @@
++-----------------------------------------------------------+
+|  BiomassX Logo        [Search Bar] [Alerts 🔔] [Profile]   |
++-----------------------------------------------------------+
+| Side Nav:  Dashboard | Orders | Market Map | Insights      |
+|           Alerts     | Sustainability | Settings          |
++-----------------+-----------------------------------------+
+| Quick Stats:    | Live Prices / Market Trends Chart        |
+| - CO₂ Saved     | (dropdown to choose product/region)      |
+| - Active Orders |                                          |
+| - Favorites     |                                          |
++-----------------+-----------------------------------------+
+| Order Book (Buy/Sell) with filters                        |
+| [Product][Region][Quality][Delivery Terms][Sort by price]  |
++-----------------------------------------------------------+
+| Quick Order Widget (Buy Now / Request Quote)               |
++-----------------------------------------------------------+
+| Sustainability Scorecard (Impact per product traded)       |
++-----------------------------------------------------------+

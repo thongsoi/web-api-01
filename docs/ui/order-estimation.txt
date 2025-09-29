@@ -1,0 +1,9 @@
++-----------------------------------------------+
+| Quantity: [____] Metric Tons                  |
+| Delivery: [FOB/DAP/EXW dropdown]              |
+| Origin Country: [dropdown]                    |
+| Destination Port: [dropdown]                  |
+| Extra Costs: [checkbox for Transport, Tax]    |
+|-----------------------------------------------|
+| [Calculate Cost]  →  Total: $____             |
++-----------------------------------------------+

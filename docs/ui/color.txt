@@ -1,0 +1,52 @@
+Pallet 1 (Abirtek)
+#f4f7f9
+#9600fe, #b54cfe, #dfb2fe
+#0096fe
+
+
+Pallet 2 (BiomassX)
+--producers #c2fb34 
+--exchange  #2563eb;
+--consumers #F59E0B
+--Error     #EF4444
+--gray      #F9FAFB
+
+Pallet 3 (Utopiaville)
+1. Hopeful & Human-Centered (Recommended)
+Primary: Soft teal or muted aqua (#4DB6AC or #5F9EA0)
+→ Represents balance, clarity, and calm progress.
+Secondary: Warm coral or peach (#FF7F50 or #FFB380)
+→ Adds warmth, humanity, and energy without being aggressive.
+Neutrals: Light gray or warm off-white (#F8F9FA or #F5F5DC) for backgrounds, dark charcoal (#333333) for text
+→ Ensures readability and accessibility.
+2. Progressive & Trustworthy
+Primary: Deep green (#2E7D32 or #388E3C)
+→ Symbolizes growth, sustainability, and shared prosperity.
+Accent: Golden yellow or amber (#FFC107 or #FFB300)
+→ Evokes optimism, opportunity, and economic security.
+Neutrals: Clean white (#FFFFFF) and soft gray (#E0E0E0)
+3. Inclusive & Calm
+Primary: Gentle blue (#64B5F6 or #42A5F5)
+→ Conveys trust, stability, and fairness.
+Accent: Lavender or soft purple (#9575CD or #B39DDB)
+→ Suggests innovation and social progress.
+Neutrals: Off-white and light taupe
+
+
+Pallet 4 (BiomassX)
+Core Color Palette
+Forest Green (#2E5A32 or #2D5016)
+Represents nature, growth, and renewable resources.
+Signals environmental responsibility and ties directly to biomass sources like wood, crops, and organic matter.
+Earth Brown (#5C4033 or #6B4423)
+Evokes soil, wood, and raw organic materials—core components of biomass.
+Adds warmth and grounding to the design.
+Clean White or Light Beige (#F8F9FA or #F5F0E6)
+Provides contrast and readability.
+Light beige subtly reinforces the natural/organic feel without being stark.
+Accent: Energy Gold or Amber (#D4A017 or #FFA726)
+Symbolizes energy, warmth, and the transformation of raw biomass into usable fuel.
+Draws attention to calls-to-action (e.g., “Trade Now,” “List Product”).
+Supporting Cool Tone: Deep Teal or Blue-Green (#1B6C60 or #00796B)
+Suggests clean technology, efficiency, and innovation in bioenergy processing.
+Balances the warmth of greens and browns with a modern, technical feel.

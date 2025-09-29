@@ -1,0 +1,15 @@
++-----------------------------------------------------------+
+| BiomassX Logo       [Admin Tools] [System Health] [Profile]|
++-----------------------------------------------------------+
+| Side Nav: User Mgmt | Data Quality | Content Mgmt | KPIs    |
+|           Reports   | Settings     | Support Requests       |
++-----------------+-----------------------------------------+
+| System KPIs:    | User & Data Management Panel            |
+| - Active Users  | Approve/Reject Orders, Edit Listings     |
+| - Trades Today  | Manage Market Categories & Standards     |
+| - CO₂ Saved     |                                          |
++-----------------+-----------------------------------------+
+| Content Management (knowledge base, onboarding tours)       |
++-----------------------------------------------------------+
+| Support Tickets / Feedback                                 |
++-----------------------------------------------------------+
