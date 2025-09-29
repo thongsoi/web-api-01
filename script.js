@@ -174,10 +174,12 @@ function editUser(id, name, email) {
 }
 
 // Event listeners
-document.getElementById('createForm').addEventListener('submit', createUser);
-document.getElementById('getUserForm').addEventListener('submit', getUser);
-document.getElementById('updateForm').addEventListener('submit', updateUser);
-document.getElementById('loadUsers').addEventListener('click', loadUsers);
-
-// Load users on page load
-window.addEventListener('load', loadUsers);
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('createForm').addEventListener('submit', createUser);
+    document.getElementById('getUserForm').addEventListener('submit', getUser);
+    document.getElementById('updateForm').addEventListener('submit', updateUser);
+    document.getElementById('loadUsers').addEventListener('click', loadUsers);
+    
+    // Load users on page load
+    loadUsers();
+});
