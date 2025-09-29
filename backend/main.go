@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 	"strconv"
 
 	"github.com/go-chi/chi/v5"
@@ -78,25 +79,34 @@ func main() {
 		r.Delete("/users/{id}", api.deleteUser)
 	})
 
-	// Serve static files
+	// Get the web directory path (relative to backend directory)
+	webDir := filepath.Join("..", "web")
+
+	// Serve static files from web directory
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
 		w.Header().Set("Pragma", "no-cache")
 		w.Header().Set("Expires", "0")
-		http.ServeFile(w, r, "index.html")
+		http.ServeFile(w, r, filepath.Join(webDir, "index.html"))
 	})
 
-	// Serve static directory (if files are in a subdirectory)
-	fileServer := http.FileServer(http.Dir("."))
-	r.Get("/style.css", func(w http.ResponseWriter, r *http.Request) {
+	// Serve CSS files
+	r.Get("/css/*", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/css")
 		w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
-		fileServer.ServeHTTP(w, r)
+		http.StripPrefix("/css/", http.FileServer(http.Dir(filepath.Join(webDir, "css")))).ServeHTTP(w, r)
 	})
-	r.Get("/script.js", func(w http.ResponseWriter, r *http.Request) {
+
+	// Serve JS files
+	r.Get("/js/*", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/javascript")
 		w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
-		fileServer.ServeHTTP(w, r)
+		http.StripPrefix("/js/", http.FileServer(http.Dir(filepath.Join(webDir, "js")))).ServeHTTP(w, r)
+	})
+
+	// Serve image files
+	r.Get("/img/*", func(w http.ResponseWriter, r *http.Request) {
+		http.StripPrefix("/img/", http.FileServer(http.Dir(filepath.Join(webDir, "img")))).ServeHTTP(w, r)
 	})
 
 	port := os.Getenv("PORT")
@@ -105,6 +115,7 @@ func main() {
 	}
 
 	log.Printf("Server starting on port %s", port)
+	log.Printf("Serving web files from: %s", webDir)
 	log.Fatal(http.ListenAndServe(":"+port, r))
 }
 
