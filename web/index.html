@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management API</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 User Management API</h1>
+            <p>A simple CRUD interface for managing users</p>
+        </div>
+        
+        <div class="content">
+            <div id="messages"></div>
+            
+            <!-- Create User Section -->
+            <div class="section">
+                <h2>➕ Add New User</h2>
+                <form id="createForm" class="inline-form">
+                    <div class="form-group">
+                        <label for="createName">Name:</label>
+                        <input type="text" id="createName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="createEmail">Email:</label>
+                        <input type="email" id="createEmail" required>
+                    </div>
+                    <button type="submit">Create User</button>
+                </form>
+            </div>
+
+            <!-- Get Single User Section -->
+            <div class="section">
+                <h2>🔍 Find User by ID</h2>
+                <form id="getUserForm" class="inline-form">
+                    <div class="form-group">
+                        <label for="userId">User ID:</label>
+                        <input type="number" id="userId" required>
+                    </div>
+                    <button type="submit">Get User</button>
+                </form>
+                <div id="singleUser"></div>
+            </div>
+
+            <!-- Update User Section -->
+            <div class="section">
+                <h2>✏️ Update User</h2>
+                <form id="updateForm" class="inline-form">
+                    <div class="form-group">
+                        <label for="updateId">User ID:</label>
+                        <input type="number" id="updateId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateName">New Name:</label>
+                        <input type="text" id="updateName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateEmail">New Email:</label>
+                        <input type="email" id="updateEmail" required>
+                    </div>
+                    <button type="submit">Update User</button>
+                </form>
+            </div>
+
+            <!-- Users List Section -->
+            <div class="section">
+                <h2>👥 All Users</h2>
+                <button id="loadUsers">Refresh Users</button>
+                <div id="usersList" class="users-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

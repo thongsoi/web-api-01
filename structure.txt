@@ -1,0 +1,8 @@
+📁 Project
+├── main.go          (Backend API)
+├── go.mod           (Go dependencies)
+├── .env             (Environment variables)
+├── schema.sql       (Database schema)
+├── index.html       (HTML structure)
+├── style.css        (Styling)
+└── script.js        (Client-side logic)
