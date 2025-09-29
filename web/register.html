@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - User Management API</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Create Account</h1>
+            <p>Join our user management platform</p>
+        </div>
+        
+        <div class="content">
+            <div id="messages"></div>
+            
+            <!-- Registration Form -->
+            <div class="section">
+                <h2>📝 Registration Form</h2>
+                <form id="registerForm" class="register-form">
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" required 
+                               placeholder="Enter your full name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required 
+                               placeholder="Enter your email address">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password *</label>
+                        <input type="password" id="password" name="password" required 
+                               placeholder="Create a secure password" minlength="6">
+                        <small class="form-hint">Password must be at least 6 characters long</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password *</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required 
+                               placeholder="Confirm your password">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="organization">Organization</label>
+                        <input type="text" id="organization" name="organization" 
+                               placeholder="Your company or organization (optional)">
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                            <span class="checkmark"></span>
+                            I agree to the <a href="#" class="terms-link">Terms of Service</a> and 
+                            <a href="#" class="terms-link">Privacy Policy</a>
+                        </label>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Create Account</button>
+                        <a href="/" class="btn-secondary">Back to Login</a>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Already have account -->
+            <div class="section">
+                <div class="login-prompt">
+                    <p>Already have an account? <a href="/" class="login-link">Sign in here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/script.js"></script>
+    <script>
+        // Registration form handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const registerForm = document.getElementById('registerForm');
+            
+            registerForm.addEventListener('submit', async function(event) {
+                event.preventDefault();
+                clearMessages();
+                
+                // Get form data
+                const formData = new FormData(registerForm);
+                const fullName = formData.get('fullName').trim();
+                const email = formData.get('email').trim();
+                const password = formData.get('password');
+                const confirmPassword = formData.get('confirmPassword');
+                const organization = formData.get('organization').trim();
+                const agreeTerms = formData.get('agreeTerms');
+                
+                // Validation
+                if (!validateRegistration(fullName, email, password, confirmPassword, agreeTerms)) {
+                    return;
+                }
+                
+                try {
+                    // Create user via API (using existing user creation endpoint)
+                    const user = await apiRequest('/users', {
+                        method: 'POST',
+                        body: JSON.stringify({ 
+                            name: fullName, 
+                            email: email 
+                        })
+                    });
+                    
+                    showMessage('Registration successful! Welcome, ' + user.name + '!', 'success');
+                    
+                    // Clear form
+                    registerForm.reset();
+                    
+                    // Optional: Redirect to main page after delay
+                    setTimeout(() => {
+                        window.location.href = '/';
+                    }, 2000);
+                    
+                } catch (error) {
+                    if (error.message.includes('status: 500')) {
+                        showMessage('Email already exists. Please use a different email address.', 'error');
+                    } else {
+                        showMessage('Registration failed: ' + error.message, 'error');
+                    }
+                }
+            });
+        });
+        
+        function validateRegistration(name, email, password, confirmPassword, agreeTerms) {
+            // Name validation
+            if (!name || name.length < 2) {
+                showMessage('Please enter a valid name (at least 2 characters)', 'error');
+                return false;
+            }
+            
+            // Email validation (basic)
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showMessage('Please enter a valid email address', 'error');
+                return false;
+            }
+            
+            // Password validation
+            if (password.length < 6) {
+                showMessage('Password must be at least 6 characters long', 'error');
+                return false;
+            }
+            
+            // Password confirmation
+            if (password !== confirmPassword) {
+                showMessage('Passwords do not match', 'error');
+                return false;
+            }
+            
+            // Terms agreement
+            if (!agreeTerms) {
+                showMessage('Please agree to the Terms of Service and Privacy Policy', 'error');
+                return false;
+            }
+            
+            return true;
+        }
+    </script>
+</body>
+</html>
