@@ -1,0 +1,1 @@
+I am in process of evaluation cross platform framework (Flutter) vs native android (Kotlin) and ios (Swift).
