@@ -62,7 +62,7 @@ func main() {
 
 	// CORS setup
 	r.Use(cors.Handler(cors.Options{
-		AllowedOrigins:   []string{"http://localhost:8080"}, // In production, specify your domain https://biomassx.com
+		AllowedOrigins:   []string{"http://localhost:8000"}, // In production, specify your domain https://biomassx.com
 		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowedHeaders:   []string{"Accept", "Authorization", "Content-Type", "X-CSRF-Token"},
 		ExposedHeaders:   []string{"Link"},
@@ -111,7 +111,7 @@ func main() {
 
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "8080"
+		port = "8000"
 	}
 
 	log.Printf("Server starting on port %s", port)
