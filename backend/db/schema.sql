@@ -1,7 +1,7 @@
 -- Create the database (run this as superuser)
--- CREATE DATABASE testdb;
+-- CREATE DATABASE web-api-01;
 
--- Connect to testdb and run the following:
+-- Connect to web-api-01 and run the following:
 
 -- Create users table
 CREATE TABLE IF NOT EXISTS users (
